@@ -11,6 +11,7 @@ const recBasic = () => {
     let twoDivers = scr * 2;
 
     //timings
+    //need to add if/then for gue style ascent
     let safetyStopTime = 3;
     let ascentTime = depthInit / 3 - 1;
     let totalTime = ascentTime + safetyStopTime;
@@ -23,10 +24,19 @@ const recBasic = () => {
     let gasVolume = twoDivers * totalTime * avgAta;
 
     //convert to pressure
-    // need to add in rounding to nearest 10 bar or 100psi
+    let pressure = gasVolume / tankSize;
+    
     if (metric === false) {
-        return gasVolume / tankSize * 28.3;
+        if (pressure < 40) {
+            return 500;
+        } else {
+            return Math.ceil((pressure * 14.5) / 100) * 100;
+        };
     } else {
-        return gasVolume / tankSize;
+        if (pressure < 40) {
+            return 40;
+        } else{
+            return Math.ceil(pressure / 10) * 10;
+        };        
     };
-}   
+};   
