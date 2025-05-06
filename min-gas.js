@@ -1,12 +1,9 @@
 //base default calculations all in metric, if user wants imperial units, convert after calcs done
 let metric = true;
 
-//basic variables for calculations that user can change in interface
-let tankSize;
-let depthInit;
 let scr = 21.25;
 
-const recBasic = () => {
+const recBasic = (tankSize, depthInit) => {
     //enough gas to get two divers to the surface while gas sharing
     let twoDivers = scr * 2;
 
